@@ -169,6 +169,18 @@ function startSnow() {
 
 document.addEventListener('DOMContentLoaded', startSnow);
 
+function adjustHeroOffset() {
+    const nav = document.getElementById("nav");
+    const hero = document.getElementById("hero");
+
+    if (nav && hero) {
+        const navHeight = nav.offsetHeight;
+        hero.style.paddingTop = navHeight + 20 + "px"; // 20px доп. пространства
+    }
+}
+
+window.addEventListener("load", adjustHeroOffset);
+window.addEventListener("resize", adjustHeroOffset);
 
 /* ==========================
     Start dynamic scripts
