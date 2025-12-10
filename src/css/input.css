@@ -4,6 +4,7 @@
 html {
     scroll-behavior: smooth;
 }
+
 #scroll-progress {
     position: fixed;
     top: 0;
