@@ -657,43 +657,87 @@ html {
     opacity: 1;
     pointer-events: auto;
 }
+/* Поля формы */
 .input-field {
     @apply rounded-xl px-4 py-3 bg-[#0f1a21] text-gray-200 
            placeholder-gray-500 border border-[#1f2b34]
            focus:outline-none focus:ring-2 focus:ring-[#00ff88] 
-           transition;
+           transition w-full;
 }
 
+/* Ровные отступы между блоками */
+.form-group {
+    @apply flex flex-col gap-1 mb-4;
+}
+
+/* Чекбоксы */
 .checkbox-row {
-    @apply flex items-start gap-3 text-sm text-gray-300;
+    @apply flex items-start gap-3 text-sm text-gray-300 mb-3;
 }
 
 .checkbox {
     @apply mt-1 h-4 w-4 rounded border-[#1f2b34] bg-[#0f1a21];
 }
 
+/* Ссылки */
 .link {
     @apply text-[#00ff88] underline hover:text-[#00a8ff] transition;
 }
 
+/* Ошибки */
 .error-text {
-    @apply text-xs text-red-400;
+    @apply text-xs text-red-400 mt-1;
 }
 
+/* Кнопка */
 .submit-btn {
     @apply bg-gradient-to-r from-[#00ff88] to-[#00a8ff]
-           text-[#0b1116] font-semibold rounded-xl px-6 py-3 mt-3 
+           text-[#0b1116] font-semibold rounded-xl px-6 py-3 mt-4 
            shadow-[0_0_15px_#00ff8870] hover:shadow-[0_0_25px_#00ff88]
-           transition;
+           transition w-full;
 }
 
-/* Модалка — анимация появления */
+/* Анимация */
 @keyframes fadeInUp {
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 .animate-fadeInUp {
   animation: fadeInUp 0.35s ease forwards;
+}
+
+.modal-anim {
+    animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+#giftModal *::-webkit-scrollbar {
+    width: 8px;
+}
+
+#giftModal *::-webkit-scrollbar-track {
+    background: rgba(0, 255, 136, 0.05);
+    border-radius: 10px;
+}
+
+#giftModal *::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.4);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+}
+
+#giftModal *::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.7);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.9);
 }
 
 

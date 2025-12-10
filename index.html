@@ -41,106 +41,7 @@
 
 </head>
 <body>
-<!-- ================= MODAL OVERLAY ================= -->
-<div id="formModal" 
-     class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden 
-            z-[999] flex items-center justify-center p-4">
-
-    <!-- MODAL WRAPPER -->
-    <div class="relative w-full max-w-xl 
-                bg-[#0c1317] border border-[#00ff88]/20 rounded-2xl shadow-2xl 
-                overflow-hidden animate-fadeInUp">
-
-        <!-- CLOSE BUTTON -->
-        <button id="closeModal" 
-                class="absolute top-3 right-3 bg-[#00ff88] text-black 
-                       w-8 h-8 rounded-full shadow-lg hover:brightness-110 transition">
-            ✕
-        </button>
-
-        <!-- CONTAINER FOR MOVED FORM -->
-        <div id="modalFormContainer" class="max-h-[80vh] overflow-y-auto p-6"></div>
-
-    </div>
-</div>
-<form id="leadForm" class="hidden bg-[#0c1317] rounded-2xl shadow-2xl 
-                         p-8 flex flex-col gap-6 w-full max-w-lg 
-                         border border-[#00ff88]/20 backdrop-blur-xl">
-
-    <div class="text-2xl font-bold text-white flex items-center gap-2">
-        <span class="text-[#00ff88] text-3xl">✦</span>
-        Получить консультацию
-    </div>
-
-    <p class="text-sm text-gray-400 -mt-3 leading-relaxed">
-        После отправки заявки мы свяжемся с вами в ближайшее время.
-    </p>
-
-
-    <!-- Имя -->
-    <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-300">Имя <span class="text-red-400">*</span></label>
-        <input id="name" name="name" type="text" required class="input-field" placeholder="Ваше имя">
-        <p id="nameErr" class="error-text hidden">Введите корректное имя.</p>
-    </div>
-
-    <!-- Email -->
-    <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-300">Email <span class="text-red-400">*</span></label>
-        <input id="email" name="email" type="email" required class="input-field" placeholder="Email">
-        <p id="emailErr" class="error-text hidden">Укажите корректный email.</p>
-    </div>
-
-    <!-- Телефон -->
-    <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-300">Телефон <span class="text-red-400">*</span></label>
-        <input id="phone" name="phone" type="tel" required class="input-field" placeholder="+7 999 123-45-67">
-        <p id="phoneErr" class="error-text hidden">Введите номер телефона корректно.</p>
-    </div>
-
-    <!-- Комментарий -->
-    <div class="flex flex-col gap-1">
-        <label class="text-sm text-gray-300">Комментарий</label>
-        <textarea id="comment" name="comment" class="input-field h-24 resize-none" placeholder="Необязательно"></textarea>
-        <p id="commentErr" class="error-text hidden">Комментарий слишком длинный.</p>
-    </div>
-
-    <!-- Согласие -->
-    <label class="checkbox-row">
-        <input id="consentRequired" type="checkbox" checked required class="checkbox">
-        <span>
-            Я даю своё 
-            <a class="link" href="https://codeby.school/documents/Согласие_на_обработку_ПД_для_лендинга.pdf" target="_blank">
-                согласие на обработку персональных данных
-            </a>
-            <span class="text-red-400">*</span>
-        </span>
-    </label>
-    <p id="consentReqErr" class="error-text hidden -mt-3">Необходимо согласие.</p>
-
-    <!-- Доп согласие -->
-    <label class="checkbox-row">
-        <input id="consentOptional" type="checkbox" class="checkbox">
-        <span>Я соглашаюсь на получение рекламно-информационных материалов.</span>
-    </label>
-
-    <input type="text" id="website" name="website" class="hidden">
-
-    <!-- Submit -->
-    <button id="submitBtn" disabled
-            class="submit-btn disabled:opacity-50 disabled:cursor-not-allowed">
-        Отправить заявку
-    </button>
-
-    <div class="text-xs text-gray-400">
-        Поля, отмеченные <span class="text-red-400">*</span>, обязательны.
-    </div>
-
-    <div id="formHint" class="text-xs text-gray-300 mt-1"></div>
-</form>
-
-
-<div id="scroll-progress"></div>
+    <div id="scroll-progress"></div>
 <header id="nav" class="fixed top-0 left-0 w-full z-50 bg-[#050f0a]/90 backdrop-blur-md shadow-lg border-b border-[#00ff88]/10">
 
     <div class="nav-garland">
@@ -217,7 +118,7 @@
             коллеге или себе.
         </p>
 
-        <button class="px-8 py-4 bg-[#00ff88] text-black rounded-xl font-semibold text-lg transition hover:brightness-110">
+        <button data-open-modal class="px-8 py-4 bg-[#00ff88] text-black rounded-xl font-semibold text-lg transition hover:brightness-110">
             Купить сертификат
         </button>
 
@@ -408,7 +309,7 @@
             Выберите формат сертификата и отправьте подарок, который точно запомнят.
         </p>
 
-        <button class="cta-button festive-btn">
+        <button data-open-modal class="cta-button festive-btn">
             Подарить сертификат
             <span class="star" style="top:-6px; left:-18px;"></span>
             <span class="star" style="top:4px; right:-18px;"></span>
@@ -461,6 +362,108 @@
 <button id="scrollTopBtn" class="scroll-top-btn">
     ↑
 </button>
+<!-- MODAL OVERLAY -->
+<div id="giftModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden 
+            flex items-center justify-center z-[9999] overflow-auto">
+    <!-- MODAL BOX -->
+    <div class="bg-[#050f0a] border border-[#00ff88]/20 rounded-2xl shadow-2xl 
+            max-w-lg w-full mx-4 p-8 relative modal-anim 
+            max-h-[90vh] overflow-y-auto">
+
+
+        <!-- Close button -->
+        <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl leading-none">
+            &times;
+        </button>
+
+        <h2 class="text-2xl font-bold text-[#00ff88] mb-4">
+            Получить консультацию и записаться
+        </h2>
+
+        <p class="text-sm text-gray-400 mb-6">
+            После отправки заявки мы свяжемся с вами в ближайшее время.
+        </p>
+
+        <!-- HERE IS YOUR FORM (redesigned but logic preserved) -->
+        <form id="leadForm" class="flex flex-col gap-5" autocomplete="on" novalidate>
+
+            <!-- Имя -->
+            <div class="flex flex-col gap-1">
+                <label for="name" class="text-sm text-gray-300">Имя <span class="text-red-400">*</span></label>
+                <input id="name" name="name" type="text" required
+                    class="rounded-lg px-4 py-3 bg-[#0a1610] border border-[#00ff88]/20 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff88]"
+                    placeholder="Ваше имя">
+                <p id="nameErr" class="text-xs text-red-400 hidden">Введите имя (минимум 2 символа, без цифр).</p>
+            </div>
+
+            <!-- Email -->
+            <div class="flex flex-col gap-1">
+                <label for="email" class="text-sm text-gray-300">Email <span class="text-red-400">*</span></label>
+                <input id="email" name="email" type="email" required
+                    class="rounded-lg px-4 py-3 bg-[#0a1610] border border-[#00ff88]/20 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff88]"
+                    placeholder="Email">
+                <p id="emailErr" class="text-xs text-red-400 hidden">Укажите корректный email.</p>
+            </div>
+
+            <!-- Телефон -->
+            <div class="flex flex-col gap-1">
+                <label for="phone" class="text-sm text-gray-300">Телефон <span class="text-red-400">*</span></label>
+                <input id="phone" name="phone" type="tel" required
+                    class="rounded-lg px-4 py-3 bg-[#0a1610] border border-[#00ff88]/20 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff88]"
+                    placeholder="+7 999 123-45-67">
+                <p id="phoneErr" class="text-xs text-red-400 hidden">Укажите корректный номер.</p>
+            </div>
+
+            <!-- Комментарий -->
+            <div class="flex flex-col gap-1">
+                <label for="comment" class="text-sm text-gray-300">Комментарий</label>
+                <textarea id="comment" name="comment"
+                    class="rounded-lg px-4 py-3 bg-[#0a1610] border border-[#00ff88]/20 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#00ff88] resize-none h-28"
+                    placeholder="Необязательно, до 1000 символов"></textarea>
+                <p id="commentErr" class="text-xs text-red-400 hidden">Слишком длинный комментарий.</p>
+            </div>
+
+            <!-- ОБЯЗАТЕЛЬНОЕ согласие -->
+            <label class="flex items-start gap-3 text-sm text-gray-300">
+                <input id="consentRequired" type="checkbox" checked required
+                    class="mt-1 h-4 w-4 rounded border-[#00ff88]/30 bg-[#0a1610]">
+                <span>Я выражаю своё
+                    <a class="text-[#00ff88] underline" href="https://codeby.school/documents/Согласие_на_обработку_ПД_для_лендинга.pdf" target="_blank">
+                        согласие на обработку ПД
+                    </a>
+                    <span class="text-red-400">*</span>
+                </span>
+            </label>
+            <p id="consentReqErr" class="text-xs text-red-400 hidden -mt-3">Необходимо согласие.</p>
+
+            <!-- НЕОБЯЗАТЕЛЬНОЕ согласие -->
+            <label class="flex items-start gap-3 text-sm text-gray-300" tabindex="6">
+                <input id="consentOptional" type="checkbox" class="mt-1 h-4 w-4 rounded border-[#232e3b] bg-[#17212b]">
+                <span>
+                Я выражаю своё
+                <a class="text-[#00ff88] underline" href="https://codeby.school/documents/Согласие_на_получение_рассылки_для_лендинга.pdf" target="_blank" rel="noopener">Согласие на получение рекламно-информационных материалов</a>
+                </span>
+            </label>
+
+            <!-- honeypot -->
+            <input type="text" id="website" name="website" class="hidden" tabindex="-1">
+
+            <!-- Кнопка -->
+            <button id="submitBtn" disabled
+                class="px-6 py-3 rounded-lg bg-[#00ff88] text-black font-semibold text-lg transition disabled:opacity-50 disabled:cursor-not-allowed">
+                Отправить
+            </button>
+
+            <div class="text-xs text-gray-400">
+                Поля, отмеченные <span class="text-red-400">*</span>, обязательны.
+            </div>
+            <div id="formHint" class="text-xs text-gray-300" aria-live="polite"></div>
+        </form>
+
+    </div>
+</div>
+
+
 <script src="./main.js" type="module"></script>
 </body>
 </html>
