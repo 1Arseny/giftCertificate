@@ -5,6 +5,41 @@ const sectionScripts = [
     "./src/js/hero.js",
 ];
 
+// MODAL ELEMENTS
+const modal = document.getElementById("formModal");
+const modalContainer = document.getElementById("modalFormContainer");
+const closeModal = document.getElementById("closeModal");
+
+window.openFormModal = function () {
+    const form = document.getElementById("leadForm");
+    if (!form || !modalContainer) return;
+
+    modalContainer.innerHTML = "";
+    modalContainer.appendChild(form);
+    form.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+};
+
+function closeFormModalFunc() {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+}
+
+if (closeModal) closeModal.addEventListener("click", closeFormModalFunc);
+
+// Close when clicking outside
+if (modal) {
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeFormModalFunc();
+    });
+}
+
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeFormModalFunc();
+});
+
+
 function loadSectionScripts(list) {
     for (const path of list) {
         const script = document.createElement("script");
@@ -182,9 +217,12 @@ function adjustHeroOffset() {
 window.addEventListener("load", adjustHeroOffset);
 window.addEventListener("resize", adjustHeroOffset);
 
+
 /* ==========================
     Start dynamic scripts
 ========================== */
 loadSectionScripts(sectionScripts);
-
+document.addEventListener("click", e => {
+    if (e.target.matches("[data-open-modal]")) openFormModal();
+});
 console.log("Optimized main.js loaded.");
